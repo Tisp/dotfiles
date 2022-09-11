@@ -98,7 +98,13 @@ let g:coc_global_extensions = [
     \ 'coc-marketplace',
     \ 'coc-sh',
     \ 'coc-spell-checker',
-    \ 'coc-tsserver'
+    \ 'coc-tsserver',
+    \ 'coc-css',
+    \ 'coc-eslint',
+    \ 'coc-format-json',
+    \ 'coc-jedi', 
+    \ 'coc-prettier',
+    \ 'coc-pyright',
     \ ]
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
