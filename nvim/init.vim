@@ -20,6 +20,10 @@ set mouse=a
 set shiftwidth=4
 set smarttab
 set relativenumber
+set termguicolors 
+set laststatus=2 " for airline
+
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
@@ -40,14 +44,15 @@ Plug 'preservim/nerdcommenter'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'mileszs/ack.vim'
-Plug 'morhetz/gruvbox'
 
 call plug#end()
 
+""  ### NERDTREE CONFIG ###  
 
-colorscheme dracula
 autocmd VimEnter * NERDTree
+
 let NERDTreeShowHidden=1
+
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
 function! IsNERDTreeOpen()        
@@ -67,6 +72,17 @@ autocmd BufEnter * call SyncTree()
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 
+map <C-b> :NERDTreeToggle<CR>
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " autoquit if only nerdtree is open
+
+let g:NERDTreeIgnore = ['__pycache__', 'node_modules']
+
+
+""  ### END NERDTREE CONFIG ###  
+
+
+colorscheme dracula
 let g:airline_theme = 'dracula'
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#branch#enabled = 1
@@ -76,8 +92,6 @@ let g:airline_section_warning = ''
 let g:airline_section_y = ''
 let g:airline_section_x = ''
 let g:airline#extensions#hunks#enabled = 1
-set laststatus=2 " for airline
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " autoquit if only nerdtree is open
 
 let g:coc_global_extensions = [
     \ 'coc-json',
@@ -86,9 +100,6 @@ let g:coc_global_extensions = [
     \ 'coc-spell-checker',
     \ 'coc-tsserver'
     \ ]
-
-set termguicolors 
-
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " NOTE: There's always complete item selected by default, you may want to enable
@@ -238,8 +249,4 @@ let g:tmux_navigator_no_mappings = 1
 :nnoremap <Leader>q" ciw""<Esc>P
 :nnoremap <Leader>q' ciw''<Esc>P
 :nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
-let g:NERDTreeIgnore = ['__pycache__', 'node_modules']
-
-map <C-b> :NERDTreeToggle<CR>
-
 
