@@ -1,0 +1,9 @@
+{
+  "codeLens.enable": true,
+  "codeLens.position": "eol",
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.enableMessageDialog": true,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.useQuickfixForLocations": true
+}
